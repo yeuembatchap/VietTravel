@@ -1,0 +1,1768 @@
+/* Nhúng icon FontAwesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* ================= 1. HEADER TRÊN CÙNG (MÀU TÍM PHẲNG) ================= */
+.top-header { 
+    background-color: #6a11cb; /* Màu tím đặc, không dùng gradient */
+    padding: 12px 0; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+    border-bottom: 3px solid #f2994a; /* Thêm đường kẻ cam ở dưới để tạo điểm nhấn */
+    
+    /* MỚI THÊM: Giúp thanh menu dính chặt trên cùng khi khách cuộn trang xuống xem tour */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-header .container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.logo { 
+    text-decoration: none; 
+    /* Đổi sang inline-block để chữ hiển thị tự nhiên, không bị lỗi Flexbox đẩy lên trên */
+    display: inline-block; 
+    font-size: 1.8rem; 
+    font-weight: 900; 
+    color: #fff; 
+    
+    /* Ép lề và chiều cao dòng về chuẩn */
+    margin: 0 !important; 
+    padding: 0;
+    line-height: 1;
+}
+
+.logo span { 
+    color: #f2994a; 
+}
+
+.main-nav { 
+    list-style: none; 
+    display: flex; 
+    gap: 30px; 
+    margin: 0; 
+    padding: 0;
+}
+
+.main-nav li a { 
+    text-decoration: none; 
+    color: #ffffff; 
+    font-weight: 600; 
+    font-size: 1rem; 
+    transition: all 0.3s ease; 
+    text-transform: uppercase;
+    
+    /* MỚI THÊM: Thẻ <a> mặc định là inline, phải đổi thành inline-block thì hiệu ứng nảy (transform: translateY) ở dưới mới hoạt động được */
+    display: inline-block; 
+}
+
+.main-nav li a:hover { 
+    color: #f2994a; /* Hover sang màu cam */
+    transform: translateY(-2px);
+}
+
+.top-right { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.lang-selector { 
+    font-weight: bold; 
+    cursor: pointer; 
+    color: #fff; 
+    font-size: 0.9rem; 
+}
+
+/* Ô tìm kiếm trên Header */
+.search-box { 
+    display: flex; 
+    background: #fff; 
+    border-radius: 25px; 
+    overflow: hidden; 
+    padding: 2px; 
+    border: 1px solid #f2994a; /* Viền cam cho ô tìm kiếm */
+}
+
+.search-box input { 
+    padding: 8px 15px; 
+    border: none; 
+    outline: none; 
+    width: 150px; 
+    font-size: 0.9rem;
+    
+    /* MỚI THÊM: Tạo hiệu ứng mượt khi ô tìm kiếm thay đổi kích thước */
+    transition: width 0.4s ease; 
+}
+
+/* MỚI THÊM: Khi khách click chuột (focus) vào ô tìm kiếm, tự động kéo dài ra cho dễ gõ */
+.search-box input:focus {
+    width: 220px;
+}
+
+.search-box button { 
+    padding: 8px 15px; 
+    background-color: #f2994a; /* Nút màu cam */
+    color: white; 
+    border: none; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+
+.search-box button:hover { 
+    background-color: #e67e22; /* Màu cam đậm hơn khi hover */
+}
+
+/* ================= ĐÁP ỨNG THIẾT BỊ DI ĐỘNG (RESPONSIVE) ================= */
+/* MỚI THÊM: Nếu màn hình nhỏ hơn iPad (768px), dồn các thành phần thành cột dọc cho khỏi vỡ khung */
+@media (max-width: 768px) {
+    .top-header .container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .search-box input {
+        width: 120px; /* Thu nhỏ ô tìm kiếm trên mobile */
+    }
+}
+
+/* ================= 2. SUB-HEADER (MENU TRẮNG CHỮ TÍM) ================= */
+.sub-header { 
+    background-color: #fff; 
+    border-bottom: 2px solid #f1f1f1; 
+    padding: 12px 0; 
+}
+.sub-nav { 
+    list-style: none; 
+    display: flex; 
+    justify-content: center; 
+    gap: 40px; 
+    margin: 0; 
+    padding: 0 20px; 
+}
+.sub-nav li a { 
+    text-decoration: none; 
+    color: #4b0082; /* Màu tím đậm Indigo */
+    font-weight: 700; 
+    font-size: 0.95rem; 
+    text-transform: uppercase; 
+    transition: 0.3s;
+}
+.sub-nav li a:hover { color: #f2994a; }
+.sub-nav li a i { font-size: 0.8rem; margin-left: 5px; color: #9b51e0; }
+
+/* ================= 3. HERO BANNER SLIDER ================= */
+.hero-banner { 
+    position: relative; 
+    width: 100%; 
+    height: 550px; /* Giữ nguyên chiều cao bạn muốn */
+    background-color: #f9f6ff; 
+    overflow: hidden; 
+}
+.hero-banner img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; /* Ép ảnh lọt lòng khung 550px, KHÔNG CẮT */
+    object-position: center; /* Căn giữa ảnh */
+}
+
+.slider-btn { 
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    background-color: rgba(155, 81, 224, 0.3); /* Tím trong suốt */
+    color: #fff; 
+    border: none; 
+    font-size: 1.5rem; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer; 
+    transition: 0.3s; 
+    z-index: 10; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slider-btn:hover { 
+    background-color: #f2994a; /* Hover sang cam */
+    color: #fff; 
+}
+.prev-btn { left: 30px; }
+.next-btn { right: 30px; }
+
+/* Animation hiệu ứng chuyển slide */
+.fade { animation: fadeEffect 1s ease-in-out; }
+@keyframes fadeEffect { 
+    from { opacity: 0.6; transform: scale(1.05); } 
+    to { opacity: 1; transform: scale(1); } 
+}
+
+/* Thanh tìm kiếm to trong trang Tin Tức (Đồng bộ) */
+.search-form {
+    display: inline-flex;
+    background: #fff;
+    border: 2px solid #9b51e0;
+    border-radius: 50px;
+    padding: 5px;
+    box-shadow: 0 4px 15px rgba(155, 81, 224, 0.2);
+}
+.search-form button {
+    background: #9b51e0;
+    border-radius: 50px;
+}
+
+/* Container tìm kiếm */
+.search-container-wrapper {
+    max-width: 800px;
+    margin: -40px auto 40px; /* Đẩy lên trên banner một chút */
+    position: relative;
+    z-index: 100;
+    padding: 0 20px;
+}
+
+.search-tour-box {
+    background: #fff;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(155, 81, 224, 0.2);
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.search-input-group i { color: #9b51e0; font-size: 1.2rem; margin-right: 15px; }
+
+.search-input-group input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 10px 0;
+}
+
+.search-input-group button {
+    background: #9b51e0;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Danh sách gợi ý */
+.suggestions-list {
+    position: absolute;
+    top: 110%;
+    left: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: none; /* Ẩn mặc định */
+    overflow: hidden;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f1f1f1;
+    transition: 0.2s;
+}
+
+.suggestion-item:hover { background: #f9f6ff; }
+
+.suggestion-item img { width: 50px; height: 40px; border-radius: 5px; object-fit: cover; margin-right: 15px; }
+
+.sugg-name { display: block; font-weight: 600; font-size: 0.95rem; }
+.sugg-price { font-size: 0.85rem; color: #f2994a; font-weight: bold; }
+.no-sugg { padding: 15px; text-align: center; color: #888; }
+
+/* ================= 4. PHẦN GIỚI THIỆU (VỀ CHÚNG TÔI) ================= */
+.about-section { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 50px; 
+    padding: 80px 20px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    align-items: center;
+}
+.about-text { flex: 1; min-width: 300px; }
+/* Chữ nhỏ phía trên tiêu đề chuyển sang Cam Amber */
+.about-text span { 
+    color: #f2994a; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
+}
+/* Tiêu đề chính chuyển sang Tím đậm */
+.about-text h2 { 
+    color: #4b0082; 
+    font-size: 2.5rem; 
+    margin-bottom: 25px; 
+    text-transform: uppercase; 
+    line-height: 1.2;
+}
+.about-text p { 
+    margin-bottom: 20px; 
+    color: #555; 
+    font-size: 1.05rem; 
+    text-align: justify; 
+    line-height: 1.8; 
+}
+/* Nút khám phá dùng Gradient Tím - Cam */
+.btn-discover { 
+    display: inline-block; 
+    background: #9b51e0; 
+    color: #fff; 
+    padding: 14px 35px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    border-radius: 50px; /* Bo tròn hiện đại */
+    transition: 0.4s; 
+    box-shadow: 0 4px 15px rgba(155, 81, 224, 0.3);
+}
+.btn-discover:hover { 
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(242, 153, 74, 0.4);
+    color: #fff;
+}
+.about-image { flex: 1; min-width: 300px; position: relative; }
+.about-image img { 
+    width: 100%; 
+    height: auto; 
+    border-radius: 20px; /* Bo góc nhiều hơn cho mềm mại */
+    box-shadow: 20px 20px 0px rgba(155, 81, 224, 0.1); /* Đổ bóng khối màu tím nhạt */
+}
+
+/* ================= 5. DANH SÁCH TOUR (CHIA LƯỚI GỌN GÀNG) ================= */
+.section-title-center { 
+    text-align: center; 
+    color: #4b0082; 
+    font-size: 2.2rem; 
+    margin-top: 60px; 
+    text-transform: uppercase; 
+    font-weight: 800;
+}
+.filter-menu { 
+    list-style: none; 
+    display: flex; 
+    justify-content: center; 
+    gap: 35px; 
+    margin: 30px 0 50px 0; 
+    flex-wrap: wrap; 
+}
+.filter-menu li { 
+    font-weight: 700; 
+    color: #777; 
+    cursor: pointer; 
+    text-transform: uppercase; 
+    position: relative; 
+    font-size: 1rem; 
+    transition: 0.3s;
+}
+/* Khi Active chuyển sang màu Tím */
+.filter-menu li.active { color: #9b51e0; }
+.filter-menu li.active::after { 
+    content: ""; 
+    position: absolute; 
+    width: 100%; 
+    height: 3px; 
+    background: #9b51e0; 
+    bottom: -8px; 
+    left: 0; 
+    border-radius: 10px;
+}
+.filter-menu li:hover { color: #f2994a; }
+
+.tour-grid-4 { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px 80px; 
+}
+
+/* Card Tour đồng bộ với trang Tin Tức */
+.tour-item { 
+    background: #fff; 
+    border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    text-align: left; /* Chuyển sang canh trái cho chuyên nghiệp */
+    text-decoration: none; 
+    color: inherit; 
+    display: flex; 
+    flex-direction: column;
+    overflow: hidden; 
+    transition: all 0.3s ease; 
+    border: 1px solid #f1f1f1;
+}
+.tour-item:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 35px rgba(155, 81, 224, 0.15);
+    border-color: #9b51e0;
+}
+.tour-img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10; 
+    overflow: hidden;
+    position: relative;
+}
+/* Tag giá hoặc giảm giá nổi bật */
+.tour-price-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f2994a;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    z-index: 2;
+}
+
+.tour-info {
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.tour-item h3 { 
+    font-size: 1.25rem; 
+    color: #333; 
+    margin-bottom: 12px; 
+    line-height: 1.4; 
+    font-weight: 700;
+}
+.tour-item h3:hover { color: #9b51e0; }
+
+.tour-item .tour-tag { 
+    color: #9b51e0; 
+    font-weight: 700; 
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px; 
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+.tour-item .tour-price { 
+    color: #4b0082; 
+    font-size: 1.3rem; 
+    font-weight: 800;
+    margin-top: auto; 
+}
+.tour-item .tour-price span {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+.tour-item .tour-price { color: #003366; font-size: 1.1rem; margin-top: auto; }
+
+/* ================= CSS CHO MENU DỊCH VỤ (DROPDOWN) ================= */
+.has-dropdown {
+    position: relative;
+}
+
+.sub-menu {
+    display: none; /* Ẩn menu con mặc định */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 4px;
+    z-index: 999;
+}
+
+/* Xổ menu con xuống khi di chuột vào thẻ cha */
+.has-dropdown:hover .sub-menu {
+    display: block;
+}
+
+.sub-menu li {
+    display: block;
+    margin: 0;
+}
+
+.sub-menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.sub-menu li a:hover {
+    background-color: #f1f1f1;
+    color: #ffa200; /* Xanh lá đặc trưng của web bạn */
+}
+
+/* ================= 6. ĐĂNG NHẬP / ĐĂNG KÝ (HEADER) ================= */
+.auth-links { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    font-size: 0.9rem; 
+    font-weight: 600; 
+    margin-right: 15px; 
+    border-right: 1px solid rgba(255,255,255,0.3); 
+    padding-right: 15px; 
+}
+.auth-links a { 
+    text-decoration: none; 
+    color: #fff; 
+    transition: all 0.3s ease; 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+}
+.auth-links a:hover { 
+    color: #f2994a; /* Cam khi hover */
+    transform: translateY(-1px);
+}
+.auth-links .divider { 
+    color: rgba(255,255,255,0.5); 
+    font-weight: 300; 
+}
+
+/* ================= 7. TRANG ĐĂNG NHẬP & ĐĂNG KÝ (FORM) ================= */
+
+/* Nền toàn màn hình - Sử dụng màu Tím chủ đạo thay cho Gradient */
+.auth-wrapper {
+    /* Sử dụng màu tím với độ trong suốt phủ lên ảnh nền */
+    background:  url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1920&q=80');
+    background-blend-mode: overlay; /* Hòa trộn màu tím vào ảnh nền */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Khung form hiệu ứng kính mờ (Glassmorphism) */
+.auth-container {
+    background: rgba(255, 255, 255, 0.95); 
+    padding: 45px;
+    border-radius: 20px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 450px;
+    backdrop-filter: blur(15px);
+    border: 2px solid #f2994a; /* Thêm viền cam tạo điểm nhấn cho khung */
+}
+
+.auth-container h2 {
+    text-align: center;
+    color: #6a11cb; /* Đổi về màu Tím thương hiệu */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* Kiểu dáng cho các ô nhập liệu */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 13px 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px; 
+    box-sizing: border-box;
+    font-size: 15px;
+    transition: all 0.3s;
+    background: #fdfdfd;
+}
+
+.form-control:focus {
+    border-color: #6a11cb; /* Viền tím khi focus */
+    box-shadow: 0 0 0 4px rgba(106, 17, 203, 0.1);
+    outline: none;
+    background: #fff;
+}
+
+/* Form đăng ký 2 ô nằm ngang */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+/* Nút bấm Đăng nhập/Đăng ký (Sử dụng màu Cam để nổi bật) */
+.btn-auth {
+    width: 100%;
+    padding: 15px;
+    background-color: #f2994a; /* Màu cam đơn sắc */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(242, 153, 74, 0.3);
+}
+
+.btn-auth:hover {
+    background-color: #e67e22; /* Cam đậm hơn khi hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(242, 153, 74, 0.4);
+}
+
+/* Các liên kết ở dưới cùng */
+.auth-links-bottom {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 15px;
+    color: #666;
+}
+
+.auth-links-bottom a {
+    color: #6a11cb; /* Màu tím */
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.auth-links-bottom a:hover {
+    color: #f2994a; /* Chuyển cam khi hover */
+}
+
+/* Thông báo lỗi/thành công */
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+}
+.alert-error { 
+    background-color: #fff5f5; 
+    color: #e53e3e; 
+    border-color: #feb2b2; 
+}
+.alert-success { 
+    background-color: #f0fff4; 
+    color: #38a169; 
+    border-color: #9ae6b4; 
+}
+/* ================= 8. TRANG CHI TIẾT TOUR (LUXURY STYLE - ADJUSTED) ================= */
+.tour-detail-container { 
+    max-width: 1200px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+    display: grid; 
+    grid-template-columns: 1.8fr 1.2fr; 
+    gap: 40px; /* Thu hẹp khoảng cách cột một chút */
+}
+
+/* Cột thông tin bên trái */
+.tour-info-col .tour-detail-img { 
+    width: 100%; 
+    border-radius: 15px; /* Bo góc nhẹ nhàng hơn */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+    margin-bottom: 30px; 
+    object-fit: cover; 
+    max-height: 500px; 
+    border: 1px solid #eee;
+}
+
+.tour-detail-title { 
+    color: #6a11cb; /* Tím thương hiệu */
+    font-size: 2.2rem; /* Giảm nhẹ cỡ chữ tiêu đề */
+    margin-bottom: 20px; 
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* Thẻ tóm tắt thông tin Tour */
+.tour-meta { 
+    background: #f9f9f9; 
+    padding: 20px; 
+    border-radius: 12px; 
+    border-left: 5px solid #6a11cb; /* Viền tím đơn sắc */
+    line-height: 1.8; 
+    font-size: 1rem; 
+    box-shadow: none; /* Bỏ shadow để trông phẳng hơn */
+    border-top: 1px solid #eee;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
+}
+
+.tour-meta div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.tour-meta strong { 
+    color: #6a11cb; 
+    min-width: 130px; 
+    font-weight: 700;
+}
+
+.tour-meta i {
+    color: #f2994a; /* Icon màu cam */
+    width: 18px;
+    text-align: center;
+}
+
+.tour-meta .price-adult { 
+    color: #f2994a; 
+    font-weight: 800; 
+    font-size: 1.3rem; 
+    margin-top: 10px; 
+    display: block;
+}
+
+/* Form đặt tour bên phải (Sticky Booking Card) */
+.booking-card { 
+    background: #fff; 
+    padding: 25px; /* Giảm padding tổng thể của card */
+    border-radius: 15px; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+    position: sticky; 
+    top: 100px; 
+    border: 1px solid #eee;
+}
+
+.booking-card h3 { 
+    text-align: center; 
+    color: #6a11cb; 
+    font-size: 2.0rem; /* Thu nhỏ tiêu đề form */
+    text-transform: uppercase; 
+    font-weight: 800;
+    border-bottom: 1px solid #f1f1f1; 
+    padding-bottom: 15px; 
+    margin-bottom: 20px; 
+}
+
+.booking-card label { 
+    display: block; 
+    font-weight: 600; 
+    color: #555; 
+    margin-bottom: 5px; 
+    font-size: 1.3rem; /* Font chữ nhãn nhỏ hơn */
+}
+
+/* --- ĐIỀU CHỈNH Ô NHẬP NHỎ HƠN --- */
+.booking-card .form-control { 
+    width: 100%; 
+    padding: 8px 12px; /* Giảm padding để ô nhập nhỏ lại */
+    border: 1px solid #ddd; 
+    border-radius: 6px; /* Bo góc nhỏ hơn cho tinh tế */
+    font-size: 0.9rem; /* Giảm size chữ trong ô nhập */
+    box-sizing: border-box; 
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.booking-card .form-control:focus { 
+    border-color: #6a11cb; 
+    box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+    outline: none; 
+}
+
+.booking-row { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 12px;
+}
+
+/* Hiển thị tổng tiền */
+.total-price-display { 
+    text-align: center; 
+    font-size: 0.95rem; 
+    color: #777; 
+    margin: 20px 0; 
+    padding-top: 15px; 
+    border-top: 1px dashed #ddd; 
+}
+
+.total-price-display span {
+    display: block;
+    font-size: 1.8rem; /* Thu nhỏ cỡ tiền một chút */
+    color: #f2994a; 
+    font-weight: 800;
+    margin-top: 5px;
+}
+
+/* Nút bấm Đặt Tour màu Tím đơn sắc */
+.btn-submit-booking { 
+    width: 100%; 
+    background-color: #6a11cb; 
+    color: #fff; 
+    padding: 12px; /* Thu nhỏ nút */
+    border: none; 
+    border-radius: 8px; 
+    font-size: 1rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 12px rgba(106, 17, 203, 0.2);
+}
+
+.btn-submit-booking:hover { 
+    background-color: #5a0eb3; /* Tím đậm hơn khi hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(106, 17, 203, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .tour-detail-container { 
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    .booking-card {
+        position: static; 
+        margin-top: 20px;
+    }
+}
+
+/* ================= CSS CHO NÚT CỜ TÙY CHỈNH ================= */
+.custom-lang-selector { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+.lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #003366;
+    padding: 0;
+    transition: color 0.3s;
+    font-family: inherit;
+}
+.lang-btn:hover { color: #d35400; }
+.lang-btn img { 
+    border-radius: 2px; 
+    border: 1px solid #ddd; 
+    object-fit: cover; 
+}
+
+/* ================= ÉP ẨN TRIỆT ĐỂ THANH CÔNG CỤ CỦA GOOGLE ================= */
+
+/* 1. Ẩn iframe banner ngang trên cùng (kể cả class mới của Google) */
+.goog-te-banner-frame,
+.skiptranslate > iframe.goog-te-banner-frame,
+.VIpgJd-ZVi9od-ORHb-OEVmcd { 
+    display: none !important; 
+    visibility: hidden !important; 
+}
+
+/* 2. Ép thẻ body và html không bị đẩy xuống (thường Google hay chèn top: 40px) */
+body { 
+    top: 0px !important; 
+    position: static !important; 
+}
+html {
+    height: auto !important;
+}
+
+/* 3. Ẩn công cụ mặc định (chỉ giữ lại 2 nút cờ của mình) */
+.goog-te-gadget { 
+    display: none !important; 
+}
+
+/* 4. Ẩn highlight (nền vàng) và popup bám theo chuột khi trỏ vào chữ đã dịch */
+.goog-text-highlight { 
+    background: transparent !important; 
+    box-shadow: none !important; 
+    border: none !important; 
+}
+#goog-gt-tt, .goog-te-balloon-frame { 
+    display: none !important; 
+}
+
+/* --- BANNER TRANG TIN TỨC --- */
+.news-hero-banner {
+    position: relative;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.banner-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+.banner-content {
+    position: relative;
+    z-index: 2;
+    color: #8813d1;
+    padding: 0 20px;
+}
+.banner-content h1 {
+    font-size: 45px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+.banner-content p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- LƯỚI BÀI VIẾT (GRID) --- */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+.post-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+.post-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* --- ẢNH BÀI VIẾT --- */
+.post-image {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+.post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.post-card:hover .post-image img {
+    transform: scale(1.08); /* Hiệu ứng zoom ảnh nhẹ khi hover */
+}
+.post-date {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(155, 81, 224, 0.8);
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    border-top-right-radius: 10px;
+}
+
+/* --- NỘI DUNG BÀI VIẾT --- */
+.post-content {
+    padding: 25px 20px;
+}
+.post-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 15px;
+}
+.post-meta i { color: #f2994a; }
+.post-title {
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+.post-title a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+.post-title a:hover { color: #9b51e0; }
+.post-excerpt {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    /* Giới hạn text hiển thị 3 dòng */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.read-more-btn {
+    display: inline-block;
+    color: #9b51e0;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+.read-more-btn:hover { color: #f2994a; }
+.read-more-btn i {
+    margin-left: 5px;
+    transition: transform 0.3s;
+}
+.read-more-btn:hover i { transform: translateX(5px); }
+
+/* --- PHÂN TRANG --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.page-link:hover, .page-link.active {
+    background: #9b51e0;
+    color: #fff;
+    border-color: #9b51e0;
+}
+
+/* Layout chi tiết bài viết */
+.post-detail-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.breadcrumb {
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #777;
+}
+.breadcrumb a { text-decoration: none; color: #9b51e0; }
+.breadcrumb i { margin: 0 10px; font-size: 10px; }
+
+.post-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+}
+
+/* Nội dung chính */
+.post-full-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #333;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+.post-full-meta {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    color: #888;
+    display: flex;
+    gap: 20px;
+}
+
+.post-featured-image {
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.post-featured-image img { width: 100%; display: block; }
+
+.post-body-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #444;
+}
+.post-body-text p { margin-bottom: 20px; }
+
+/* Sidebar */
+.widget-title {
+    font-size: 20px;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+.widget-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 50px; height: 3px;
+    background: #9b51e0;
+}
+
+.related-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.related-thumb {
+    width: 80px; height: 80px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.related-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.related-info h4 { font-size: 15px; margin-bottom: 5px; }
+.related-info h4 a { text-decoration: none; color: #333; transition: 0.3s; }
+.related-info h4 a:hover { color: #f2994a; }
+.related-info span { font-size: 12px; color: #999; }
+
+.sidebar-promo {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 40px;
+    color: #fff;
+}
+.promo-text {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 20px;
+    background: rgba(155, 81, 224, 0.8);
+}
+.btn-amber {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #f2994a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 992px) {
+    .post-detail-layout { grid-template-columns: 1fr; }
+}
+
+.search-form {
+    display: inline-flex;
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    border: 2px solid #9b51e0; /* Màu tím chủ đạo */
+    border-radius: 50px;
+    padding: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(155, 81, 224, 0.1);
+}
+
+.search-form input {
+    flex: 1;
+    border: none;
+    padding: 12px 25px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-form button {
+    background: #9b51e0; 
+    color: #fff;
+    border: none;
+    padding: 0 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.search-form button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* ================= 9. FOOTER (MÀU TÍM ĐẬM) ================= */
+.main-footer {
+    background-color: #2d0050; /* Tím cực đậm gần như đen để làm nổi bật nội dung */
+    color: #fff;
+    padding: 80px 0 0 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+}
+
+.footer-column h3 {
+    color: #f2994a; /* Tiêu đề cột màu Cam */
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    position: relative;
+    font-weight: 700;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background: #9b51e0;
+    bottom: -10px;
+    left: 0;
+}
+
+.footer-logo { color: #fff; margin-bottom: 20px; }
+.footer-logo span { color: #f2994a; }
+
+.footer-desc {
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+/* Social Icons */
+.social-links { display: flex; gap: 15px; }
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    text-decoration: none;
+}
+.social-links a:hover {
+    background: #f2994a;
+    transform: translateY(-5px);
+}
+
+/* Links List */
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+.footer-links li a:hover { color: #f2994a; padding-left: 10px; }
+.footer-links li a::before {
+    content: '\f105'; /* Icon chevron-right của FontAwesome */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-right: 10px;
+    font-size: 0.8rem;
+    color: #9b51e0;
+}
+
+/* Contact Info */
+.contact-info { list-style: none; padding: 0; }
+.contact-info li {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: #ccc;
+    align-items: flex-start;
+}
+.contact-info li i { color: #9b51e0; margin-top: 5px; }
+
+/* Newsletter Form */
+.newsletter-form {
+    display: flex;
+    background: rgba(255,255,255,0.1);
+    padding: 5px;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+.newsletter-form input {
+    background: transparent;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    flex: 1;
+    outline: none;
+}
+.newsletter-form button {
+    background: #f2994a;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.newsletter-form button:hover { background: #9b51e0; }
+
+/* Bottom Bar */
+.footer-bottom {
+    background: rgba(0,0,0,0.3);
+    padding: 25px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem;
+    color: #888;
+}
+
+
+/* Container & Wrapper */
+.tour-carousel-container:hover .tour-nav-btn { opacity: 1; }
+
+.tour-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    color: #4b0082;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+    opacity: 0; /* Hiện lên khi hover vào vùng tour */
+}
+.tour-nav-btn.prev { left: -20px; }
+.tour-nav-btn.next { right: -20px; }
+.tour-nav-btn:hover { background: #f2994a; color: #fff; }
+
+/* Card Tour Item */
+.tour-item {
+    flex: 0 0 calc(25% - 15px); /* Hiển thị 4 cột */
+    min-width: 270px;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.tour-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(155, 81, 224, 0.15);
+}
+
+/* Image Wrap & Overlay */
+.tour-img-wrap {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+.tour-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+.tour-item:hover .tour-img-wrap img { transform: scale(1.1); }
+
+.tour-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(75, 0, 130, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+.tour-item:hover .tour-overlay { opacity: 1; }
+.view-detail {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* Info Section */
+.tour-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+.tour-tag {
+    font-size: 0.7rem;
+    color: #f2994a;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: block;
+}
+.tour-info h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    height: 3rem; /* Cố định 2 dòng tiêu đề */
+    overflow: hidden;
+}
+.tour-meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+.tour-price { color: #4b0082; font-weight: 800; font-size: 1.1rem; }
+.tour-price small { font-weight: 400; font-size: 0.75rem; color: #777; }
+.tour-meta i { color: #f2994a; transition: 0.3s; }
+.tour-item:hover .tour-meta i { transform: translateX(5px); }
+
+/* --------------------------------Trang hotels */
+.hotel-section { padding: 60px 0; background-color: #fcfcfc; min-height: 70vh; }
+.section-title { 
+    text-align: center; 
+    font-size: 2.2rem; 
+    color: #6a11cb; /* Tím chủ đạo */
+    margin-bottom: 40px; 
+    text-transform: uppercase;
+    font-weight: 800;
+}
+.section-title span { color: #f2994a; /* Điểm nhấn cam */ }
+
+.hotel-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px;
+}
+
+.hotel-card { 
+    background: #fff; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+}
+.hotel-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 12px 25px rgba(106, 17, 203, 0.12); /* Bóng tím nhẹ */
+    border-color: #6a11cb;
+}
+
+.hotel-image { position: relative; height: 220px; }
+.hotel-image img { width: 100%; height: 100%; object-fit: cover; }
+.hotel-tag { 
+    position: absolute; 
+    top: 15px; 
+    left: 15px; 
+    background-color: #6a11cb; 
+    color: #fff; 
+    padding: 6px 14px; 
+    border-radius: 20px; 
+    font-size: 0.75rem; 
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.hotel-content { padding: 20px; }
+.hotel-stars { color: #f2994a; font-size: 0.85rem; margin-bottom: 8px; }
+.hotel-name { 
+    color: #333; 
+    font-size: 1.15rem; 
+    margin-bottom: 10px; 
+    font-weight: 700; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+.hotel-desc { color: #666; font-size: 0.85rem; line-height: 1.6; margin-bottom: 20px; }
+
+.hotel-footer { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding-top: 15px; 
+    border-top: 1px dashed #eee; 
+}
+
+/* CSS cho Khung Chat */
+.chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: sans-serif; }
+.chat-toggle { background: #ff5722; color: #fff; border: none; padding: 12px 20px; border-radius: 50px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s; }
+.chat-toggle:hover { background: #e64a19; transform: translateY(-2px); }
+
+.chat-box { display: none; width: 320px; height: 420px; background: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); flex-direction: column; overflow: hidden; margin-bottom: 10px; }
+.chat-header { background: #003366; color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+.chat-header h4 { margin: 0; font-size: 15px; }
+.close-chat { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+
+.chat-body { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
+.chat-msg { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px; line-height: 1.4; }
+.chat-msg p { margin: 0; }
+.chat-msg.admin { background: #e0e0e0; align-self: flex-start; border-bottom-left-radius: 2px; }
+.chat-msg.user { background: #007bff; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+.chat-footer { padding: 10px; background: #fff; border-top: 1px solid #eee; display: flex; gap: 5px; }
+.chat-footer input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
+.chat-footer button { background: #007bff; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+
+.hotel-price .label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 2px;}
+.hotel-price .amount { color: #f2994a; font-weight: 800; font-size: 1.1rem; }
+
+.btn-view { 
+    background-color: #6a11cb; 
+    color: #fff; 
+    text-decoration: none; 
+    padding: 8px 18px; 
+    border-radius: 8px; 
+    font-size: 0.85rem; 
+    font-weight: 700; 
+    transition: 0.3s;
+}
+.btn-view:hover { background-color: #f2994a; color: #fff; } /* Hover đổi sang cam */
+
+/* CSS CSS bổ sung cho Bộ lọc */
+.filter-container {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+.filter-form { display: flex; gap: 10px; }
+.filter-form select {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+}
+.filter-form select:focus { border-color: #6a11cb; }
+.filter-form button {
+    background-color: #f2994a;
+    color: #fff;
+    border: none;
+    padding: 0 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.filter-form button:hover { background-color: #e67e22; }
+
+/* Trang chi tiết khách sạn: */
+/* Tổng thể trang chi tiết */
+.hotel-detail-section {
+    padding: 60px 0;
+    background-color: #fcfcfc;
+    min-height: 80vh;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Cột trái rộng hơn cho ảnh */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Cột trái: Hình ảnh */
+.detail-image-box img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    object-fit: cover;
+    max-height: 550px;
+}
+
+/* Cột phải: Thông tin */
+.detail-info-box h1 {
+    color: #6a11cb; /* Tím */
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.detail-stars {
+    color: #f2994a; /* Cam */
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.detail-location {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.detail-location i {
+    color: #6a11cb;
+    margin-right: 8px;
+}
+
+/* Box giá tiền */
+.price-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 6px solid #f2994a;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.price-card span {
+    display: block;
+    color: #888;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.price-card strong {
+    color: #f2994a;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+/* Mô tả */
+.detail-description {
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 40px;
+}
+
+.detail-description h3 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.detail-description h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: #6a11cb;
+}
+
+/* Danh sách tour liên quan */
+.related-tours {
+    background: #f8f4ff;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #e0d5f5;
+}
+
+.related-tours h4 {
+    color: #6a11cb;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.tour-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.tour-item:hover {
+    border-color: #6a11cb;
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.1);
+}
+
+.tour-item .t-price {
+    color: #f2994a;
+    font-weight: 800;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .detail-grid { grid-template-columns: 1fr; }
+}
