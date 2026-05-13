@@ -128,12 +128,20 @@ $searchQuery = !empty($search) ? "&search=" . urlencode($search) : "";
                     <tr>
                         <td style="font-weight: bold; color: #555;">#<?= $p['ID'] ?></td>
                         <td>
-                            <?php if(!empty($p['Thumbnail'])): ?>
-                                <img src="../uploads/<?= htmlspecialchars($p['Thumbnail']) ?>" class="post-img" loading="lazy" onerror="this.src='https://via.placeholder.com/90x60?text=No+Image'">
-                            <?php else: ?>
-                                <span style="font-size: 12px; color: #999;">Chưa có ảnh</span>
-                            <?php endif; ?>
-                        </td>
+    <?php if(!empty($p['Thumbnail'])): ?>
+        <?php 
+            // Kiểm tra xem Thumbnail có phải là link web (http/https) hay không
+            $imageSrc = $p['Thumbnail'];
+            if (!filter_var($imageSrc, FILTER_VALIDATE_URL)) {
+                // Nếu không phải URL, mặc định nó là file trong thư mục uploads
+                $imageSrc = "../uploads/" . htmlspecialchars($p['Thumbnail']);
+            }
+        ?>
+        <img src="<?= $imageSrc ?>" class="post-img" loading="lazy" onerror="this.src='https://via.placeholder.com/90x60?text=No+Image'">
+    <?php else: ?>
+        <span style="font-size: 12px; color: #999;">Chưa có ảnh</span>
+    <?php endif; ?>
+</td>
                         <td style="font-weight: bold; color: #003366; max-width: 300px; line-height: 1.4;">
                             <?= htmlspecialchars($p['Title']) ?>
                         </td>
