@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_insurance'])) 
     <div style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 4px solid #8bc34a;">
         <h3 style="color: #33691e; margin-top: 0; font-size: 1.5rem;"><?= htmlspecialchars($bh['Name']) ?></h3>
         <p style="color: #555; font-size: 1.1rem;"><?= htmlspecialchars($bh['Description']) ?></p>
-        <p><strong>Mức bồi thường tối đa:</strong> <span style="color: #003366; font-weight: bold;"><?= number_format($bh['CoverageAmount'], 0, ',', '.') ?> VNĐ</span></p>
         <p><strong>Phí bảo hiểm:</strong> <span style="color: red; font-weight: bold; font-size: 1.3rem;"><?= number_format($bh['PricePerPerson'], 0, ',', '.') ?> VNĐ</span> /người</p>
         
         <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
