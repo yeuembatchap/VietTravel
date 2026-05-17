@@ -36,24 +36,6 @@ CREATE TABLE `areas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `banners`
---
-
-CREATE TABLE `banners` (
-  `ID` int(11) NOT NULL,
-  `Page` varchar(50) NOT NULL COMMENT 'Mã trang (vd: home, about, contact, tours)',
-  `Image` varchar(255) NOT NULL COMMENT 'Đường dẫn file ảnh',
-  `Title` varchar(255) DEFAULT NULL COMMENT 'Dòng chữ chính trên banner (nếu có)',
-  `Subtitle` varchar(255) DEFAULT NULL COMMENT 'Dòng chữ phụ trên banner (nếu có)',
-  `Link` varchar(255) DEFAULT NULL COMMENT 'Link khi khách click vào banner',
-  `DisplayOrder` int(11) DEFAULT 0 COMMENT 'Thứ tự hiển thị (nếu làm slider có nhiều ảnh)',
-  `Status` tinyint(1) DEFAULT 1 COMMENT '1: Đang hiển thị, 0: Đang ẩn',
-  `CreatedAt` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `bookings`
 --
 

@@ -17,7 +17,7 @@ $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-<?php include '../header.php'; ?>
+<?php $disableHeaderBanner = true; include '../header.php'; ?>
 
 <div class="container" style="padding: 40px 20px; max-width: 1200px; margin: auto;">
     <h2 style="text-align: center; color: #003366; margin-bottom: 30px;">DỊCH VỤ THUÊ XE DU LỊCH</h2>

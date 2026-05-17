@@ -1,6 +1,7 @@
 <?php
 // 1. Nhúng file kết nối database và header
 require_once '../config/db.php';
+$disableHeaderBanner = true;
 include 'header.php';
 
 // 2. Kiểm tra kết nối

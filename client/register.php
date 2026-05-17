@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-include 'header.php';
+$disableHeaderBanner = true; include 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="vi">

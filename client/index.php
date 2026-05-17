@@ -19,7 +19,7 @@ $stmt->execute();
 $tours = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // 2. Lấy danh sách Banner cho trang chủ
-$sqlBanners = "SELECT * FROM banners WHERE Page = 'home' AND Status = 1 ORDER BY DisplayOrder ASC";
+$sqlBanners = "SELECT * FROM areas WHERE Banner IS NOT NULL AND Banner != ''";
 $stmtBanners = $conn->prepare($sqlBanners);
 $stmtBanners->execute();
 $banners = $stmtBanners->fetchAll(PDO::FETCH_ASSOC);
@@ -42,14 +42,12 @@ $banners = $stmtBanners->fetchAll(PDO::FETCH_ASSOC);
         
         <div class="slides-container" style="width: 100%; height: 100%;">
             <?php if (count($banners) > 0): ?>
-                <?php foreach ($banners as $index => $banner): ?>
-                    <div class="slide fade" style="display: <?php echo $index === 0 ? 'block' : 'none'; ?>;">
-                        <a href="<?php echo !empty($banner['Link']) ? htmlspecialchars($banner['Link']) : '#'; ?>">
-                            <img src="<?php echo htmlspecialchars($banner['Image']); ?>" alt="<?php echo htmlspecialchars($banner['Title']); ?>">
-                        </a>
-                        
-                        </div>
-                <?php endforeach; ?>
+<?php foreach ($banners as $index => $banner): ?>
+    <div class="slide fade" style="display: <?php echo $index === 0 ? 'block' : 'none'; ?>;">
+        <img src="<?php echo htmlspecialchars($banner['Banner']); ?>" 
+             alt="<?php echo htmlspecialchars($banner['Name']); ?>">
+    </div>
+<?php endforeach; ?>
             <?php else: ?>
                 <div class="slide fade" style="display: block;">
                     <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=2070&q=80" alt="Banner Default">
@@ -79,7 +77,7 @@ $banners = $stmtBanners->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="about-image">
             <!-- <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80" alt="Về chúng tôi"> -->
-            <img src="<?php echo htmlspecialchars($banner['Image']); ?>" alt="<?php echo htmlspecialchars($banner['Title']); ?>">
+            <img src="<?php echo htmlspecialchars($banners[0]['Banner']); ?>"  alt="<?php echo htmlspecialchars($banners[0]['Name']); ?>">
         </div>
     </div>
 

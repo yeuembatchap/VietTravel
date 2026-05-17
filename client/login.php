@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = 'Sai tên đăng nhập, mật khẩu hoặc tài khoản bị khóa!';
     }
 }
+$disableHeaderBanner = true;
 include 'header.php';
 ?>
 <!DOCTYPE html>

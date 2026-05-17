@@ -165,18 +165,29 @@
 .sub-nav li a i { font-size: 0.8rem; margin-left: 5px; color: #9b51e0; }
 
 /* ================= 3. HERO BANNER SLIDER ================= */
-.hero-banner { 
-    position: relative; 
-    width: 100%; 
-    height: 550px; /* Giữ nguyên chiều cao bạn muốn */
-    background-color: #f9f6ff; 
-    overflow: hidden; 
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 600px; /* hoặc 100vh nếu muốn full màn hình */
+    overflow: hidden;
 }
-.hero-banner img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain; /* Ép ảnh lọt lòng khung 550px, KHÔNG CẮT */
-    object-position: center; /* Căn giữa ảnh */
+
+.hero-banner .slides-container {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-banner .slide {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-banner .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* Ảnh phủ đầy, không bị méo */
+    object-position: center;  /* Căn giữa ảnh */
+    display: block;
 }
 
 .slider-btn { 
