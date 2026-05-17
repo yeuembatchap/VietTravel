@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm_booking'])) {
 </head>
 <body>
 
-<?php include '../header.php'; ?>
+<?php $disableHeaderBanner = true; include '../header.php'; ?>
 
 <div class="container" style="padding: 40px 20px; max-width: 800px; margin: auto;">
     <h2 style="text-align: center; color: #003366;">XÁC NHẬN ĐẶT XE</h2>

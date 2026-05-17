@@ -3,7 +3,12 @@ session_start();
 require_once '../config/db.php';
 
 // Truy vấn lấy danh sách xe đang hoạt động
-$stmt = $conn->prepare("SELECT * FROM vehicles WHERE Status = 1");
+$stmt = $conn->prepare("
+    SELECT v.*, c.Name AS CityName 
+    FROM vehicles v
+    LEFT JOIN cities c ON v.CityID = c.ID
+    WHERE v.Status = 1
+");
 $stmt->execute();
 $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -41,6 +46,13 @@ $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h3 style="margin-top: 0; color: #d35400;"><?= htmlspecialchars($xe['Name']) ?></h3>
                     <p><strong>Số chỗ:</strong> <?= $xe['Seats'] ?> chỗ</p>
                     <p><strong>Tài xế:</strong> <?= $xe['HasDriver'] ? 'Có tài xế' : 'Tự lái' ?></p>
+                    <p>
+    <strong>Khu vực:</strong> 
+    <span style="color: #1565c0;">
+        <i class="fas fa-map-marker-alt"></i> 
+        <?= htmlspecialchars($xe['CityName'] ?? 'Chưa cập nhật') ?>
+    </span>
+</p>
                     <p><strong>Giá thuê:</strong> <span style="color: red; font-weight: bold; font-size: 1.2rem;"><?= number_format($xe['PricePerDay'], 0, ',', '.') ?> VNĐ</span>/ngày</p>
                     <a href="book_vehicle.php?vehicle_id=<?= $xe['ID'] ?>" style="display: block; text-align: center; width: 100%; padding: 10px; background: #8bc34a; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px; box-sizing: border-box;">ĐẶT XE NGAY</a>
                 </div>
