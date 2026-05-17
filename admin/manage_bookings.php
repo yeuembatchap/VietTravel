@@ -102,7 +102,7 @@ $searchQuery = !empty($search) ? "&search=" . urlencode($search) : "";
 
 <div class="content-box">
     <div class="box-header" style="background: #e3f2fd; color: #1565c0;">
-        <i class="fas fa-file-invoice-dollar"></i> QUẢN LÝ ĐƠN HÀNG (BOOKING TOUR)
+        <i class="fas fa-file-invoice-dollar"></i> QUẢN LÝ ĐẶT TOUR (BOOKING TOUR)
     </div>
     <div class="box-body">
         
@@ -167,12 +167,18 @@ $searchQuery = !empty($search) ? "&search=" . urlencode($search) : "";
                             else echo '<span class="badge pending"><i class="fas fa-clock"></i> Chờ xử lý</span>';
                             ?>
                         </td>
-                        <td>
-                            <?php if ($status != 'paid'): ?>
-                                <a href="?action=approve&id=<?= $b['ID'] ?>" class="btn-action btn-approve" onclick="return confirm('Xác nhận khách đã thanh toán đơn này?');"><i class="fas fa-check"></i> Duyệt</a>
-                            <?php endif; ?>
-                            <a href="?action=delete&id=<?= $b['ID'] ?>" class="btn-action btn-delete" onclick="return confirm('CẢNH BÁO: Xóa vĩnh viễn đơn hàng này?');"><i class="fas fa-trash"></i></a>
-                        </td>
+                        
+<td>
+    <!-- Thêm nút Sửa vào đây -->
+    <a href="edit_booking.php?id=<?= $b['ID'] ?>" class="btn-action" style="background:#f57c00;">
+        <i class="fas fa-edit"></i> Sửa
+    </a>
+    
+    <?php if ($status != 'paid'): ?>
+        <a href="?action=approve&id=<?= $b['ID'] ?>" class="btn-action btn-approve" onclick="return confirm('Xác nhận khách đã thanh toán đơn này?');"><i class="fas fa-check"></i> Duyệt</a>
+    <?php endif; ?>
+    <a href="?action=delete&id=<?= $b['ID'] ?>" class="btn-action btn-delete" onclick="return confirm('CẢNH BÁO: Xóa vĩnh viễn đơn hàng này?');"><i class="fas fa-trash"></i></a>
+</td>
                     </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
