@@ -70,6 +70,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['Role'] !== 'admin') {
         <li><a href="manage_tours.php"><i class="fas fa-map-marked-alt"></i> <span>Quản lý Tour</span></a></li>
         <li><a href="manage_hotels.php"><i class="fas fa-hotel"></i> <span>Quản lý Khách sạn</span></a></li>
         <li><a href="manage_users.php"><i class="fas fa-users"></i> <span>Quản lý Khách hàng</span></a></li>
+        <li><a href="manage_staffs.php"><i class="fas fa-user-tie"></i> <span>Quản lý Nhân viên</span></a></li>
         <li><a href="manage_cars.php"><i class="fas fa-car"></i> <span>Quản lý Đặt xe</span></a></li>
         <li><a href="manage_insurance.php"><i class="fas fa-shield-alt"></i> <span>Quản lý Bảo hiểm</span></a></li>
         <li><a href="manage_posts.php"><i class="fas fa-newspaper"></i> <span>Quản lý Bài viết</span></a></li>
