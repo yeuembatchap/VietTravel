@@ -52,6 +52,9 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['Role'] !== 'admin') {
         .box-header { background-color: #e8f5e9; color: #2e7d32; padding: 15px; text-align: center; font-weight: bold; font-size: 16px; text-transform: uppercase; border-bottom: 1px solid #c8e6c9; }
         .box-body { padding: 20px; }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 

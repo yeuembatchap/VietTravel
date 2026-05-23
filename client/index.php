@@ -9,7 +9,7 @@ if (!isset($lang)) {
 }
 
 // 1. Lấy danh sách tour đang mở bán (Status = 1) - Dùng PDO
-$sql = "SELECT tours.*, cities.AreaID 
+$sql = "SELECT tours.*, cities.AreaID, cities.Name AS CityName
         FROM tours 
         LEFT JOIN cities ON tours.CityID = cities.ID 
         WHERE tours.Status = 1 
@@ -100,23 +100,28 @@ $banners = $stmtBanners->fetchAll(PDO::FETCH_ASSOC);
                     <?php if(count($tours) > 0): ?>
                         <?php foreach($tours as $tour): ?>
                             <a href="tour_detail.php?id=<?= $tour['ID'] ?>" class="tour-item" data-area="<?= isset($tour['AreaID']) ? $tour['AreaID'] : '' ?>">
-                                <div class="tour-img-wrap">
-                                    <img src="<?= htmlspecialchars($tour['Banner']) ?>" alt="<?= htmlspecialchars($tour['Name']) ?>">
-                                    <div class="tour-overlay">
-                                        <span class="view-detail">Xem chi tiết</span>
-                                    </div>
-                                </div>
-                                <div class="tour-info">
-                                    <span class="tour-tag">Khám phá</span>
-                                    <h3><?= htmlspecialchars($tour['Name']) ?></h3>
-                                    <div class="tour-meta">
-                                        <span class="tour-price">
-                                            <small>Từ</small> <?= number_format($tour['Price'], 0, ',', '.') ?> <small>VNĐ</small>
-                                        </span>
-                                        <i class="fas fa-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </a>
+    <div class="tour-img-wrap">
+        <img src="<?= htmlspecialchars($tour['Banner']) ?>" alt="<?= htmlspecialchars($tour['Name']) ?>">
+        <div class="tour-overlay">
+            <span class="view-detail">Xem chi tiết</span>
+        </div>
+    </div>
+    <div class="tour-info">
+        <span class="tour-tag">
+            <i class="fas fa-map-marker-alt"></i> <?= htmlspecialchars($tour['CityName'] ?? 'Việt Nam') ?>
+        </span>
+        <h3><?= htmlspecialchars($tour['Name']) ?></h3>
+        <div class="tour-duration" style="font-size:13px; color:#888; margin-bottom:6px;">
+            <i class="fas fa-clock"></i> <?= htmlspecialchars($tour['Duration']) ?>
+        </div>
+        <div class="tour-meta">
+            <span class="tour-price">
+                <small>Từ</small> <?= number_format($tour['Price'], 0, ',', '.') ?> <small>VNĐ</small>
+            </span>
+            <i class="fas fa-arrow-right"></i>
+        </div>
+    </div>
+</a>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <p style="text-align:center; width: 100%;">Hiện chưa có tour nào.</p>
@@ -298,35 +303,7 @@ $banners = $stmtBanners->fetchAll(PDO::FETCH_ASSOC);
         }
     });
 </script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const searchInput = document.getElementById('tour-search-input');
-        const suggestionBox = document.getElementById('search-suggestions');
 
-        searchInput.addEventListener('input', function() {
-            let keyword = this.value.trim();
-            
-            if (keyword.length >= 2) {
-                // Gửi yêu cầu AJAX
-                fetch('ajax_search_tours.php?key=' + encodeURIComponent(keyword))
-                    .then(response => response.text())
-                    .then(data => {
-                        suggestionBox.innerHTML = data;
-                        suggestionBox.style.display = 'block';
-                    });
-            } else {
-                suggestionBox.style.display = 'none';
-            }
-        });
-
-        // Ẩn gợi ý khi click ra ngoài
-        document.addEventListener('click', function(e) {
-            if (!searchInput.contains(e.target) && !suggestionBox.contains(e.target)) {
-                suggestionBox.style.display = 'none';
-            }
-        });
-    });
-    </script>
     <?php include 'footer.php'; ?>
 </body>
 </html>

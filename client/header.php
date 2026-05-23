@@ -64,7 +64,7 @@ try {
                     <?php endif; ?>
 
                     <span class="divider" style="margin: 0 10px;">|</span>
-                    <a href="../logout.php" style="color: #f69c00;"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                    <a href="logout.php" style="color: #f69c00;"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                 <?php else: ?>
                     <a href="login.php" style="font-size: 1.0rem;"><i class="fas fa-user-circle" style="font-size: 1.1rem;"></i> Đăng nhập</a>
                     <span class="divider">/</span>
